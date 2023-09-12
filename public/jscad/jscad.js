@@ -146,25 +146,16 @@ const hour = () => {
 }
 
 const minute = () => {
-    let timeSum, temp;
+    const timeSum = [];
     for (let i = 0; i <= 180; i += 15 / 4) {
-        if (i === 0) {
-            timeSum = time(i)
-        } else {
-            temp = time(i)
-            timeSum = union(timeSum, temp)
-        }
+        timeSum.push(time(i))
     }
-    return subtract(
-        subtract(
-            timeSum,
-            union(
-                rotate([degToRad(90 + latitude), 0, 0], cylinder({ height: 40, radius: 17.5 })),
-                rotate([-degToRad(90 - latitude), 0, 0], cylinder({ height: 40, radius: 17.5 }))
-            )
-        ),
-        translate([0, 0, 20], cube({ size: 40 }))
+    const sub = union(
+        rotate([degToRad(90 + latitude), 0, 0], cylinder({ height: 40, radius: 17.5 })),
+        rotate([-degToRad(90 - latitude), 0, 0], cylinder({ height: 40, radius: 17.5 })),
+        translate([0, 0, 20], cube({ size: 40 })),
     )
+    return timeSum.map((time) => subtract(time, sub))
 }
 
 const dec = () => {
@@ -201,22 +192,5 @@ const buildFlatText = (input, height, radius, x, y) => {
     })
     return union(lineSegments)
 }
-
-// const rawData = stlSerializer.serialize({binary: true}, main())
-
-// const blob = new Blob(rawData)
-// console.log(blob);
-
-// async function saveBlobAsSTL(blob, filename) {
-//     try {
-//         const buffer = await blob.arrayBuffer(); // Convert Blob to ArrayBuffer
-//         await fs.writeFile(filename, Buffer.from(buffer));
-//         console.log('STL file saved successfully.');
-//     } catch (error) {
-//         console.error('Error saving STL file:', error);
-//     }
-// }
-
-// saveBlobAsSTL(blob, 'angbu.stl');
 
 module.exports = main;
