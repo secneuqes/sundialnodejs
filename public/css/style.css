@@ -1,0 +1,53 @@
+body {
+    background-color: #ffffff;
+}
+
+#lang-dropdown {
+    background-color: white;
+    color: black;
+}
+
+#intro {
+    background-color: #ffffff;
+}
+
+#secondMain {
+    background-color: #000035;
+}
+
+.btn-outline-db {
+    border-color: #4F709C;
+    color: #4F709C;
+}
+
+.btn-outline-db:hover {
+    border-color: #4F709C;
+    background-color: #4F709C;
+    color: white;
+}
+
+#fourthMain .exp-print {
+    display: block;
+    width: 100% !important;
+    margin: 0 auto;
+}
+
+#fourthMain .slider {
+    width: 10em;
+    margin: 0 auto;
+}
+
+#footerbox {
+    background-color: white;
+    color: black;
+}
+
+/* makemodel page */
+
+#map {
+    border-radius: 10px !important;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 100%;
+    height: 500px;
+}

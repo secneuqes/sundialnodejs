@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>앙부일구</title>
+
+    <!-- jquery -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <!-- bootstrap v5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+    <!-- slick slider -->
+    <link rel="stylesheet" type="text/css" href="./slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css" />
+
+    <!-- static -->
+    <link rel="stylesheet" href="./css/style.css">
+
+
+
+</head>
+
+<body class="vh-100">
+
+    <!-- Navbar -->
+    <nav class="navbar bg-transparent">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="./image/logowtxt.png" alt="logo" style="width: 4em;">
+            </a>
+            <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                <a href="#signup" class="text-white text-decoration-none px-3 py-1 rounded-4"
+                    style="background-color: #213555;">Sign Up</a>
+                <div class="dropdown">
+                    <button id="lang-dropdown" class="btn btn-secondary dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        언어
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item lang-select" data-lang="ko">한국어 🇰🇷</a></li>
+                        <li><a class="dropdown-item lang-select" data-lang="en">English 🇬🇧</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- main -->
+    <main>
+        <section id="intro"
+            class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center text-black fs-1">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <div id="locDatatxt" class="small fs-2 mb-4 fw-bold">위치 데이터</div>
+                        <div class="input-group flex-nowrap mb-3">
+                            <span id="latitudeTT" class="input-group-text fw-bold" id="addon-wrapping">위도</span>
+                            <input id="latitude" type="text" class="form-control" placeholder="위도" aria-label="latitude"
+                                aria-describedby="addon-wrapping" disabled>
+                        </div>
+                        <div class="input-group flex-nowrap mb-3">
+                            <span id="longitudeTT" class="input-group-text fw-bold" id="addon-wrapping">경도</span>
+                            <input id="longitude" type="text" class="form-control" placeholder="경도"
+                                aria-label="longitude" aria-describedby="addon-wrapping" disabled>
+                        </div>
+                        <div class="input-group flex-nowrap mb-3">
+                            <span id="mag-declinationTT" class="input-group-text fw-bold" id="addon-wrapping">편각</span>
+                            <input id="mag-declination" type="text" class="form-control" placeholder="편각"
+                                aria-label="mag_declination" aria-describedby="addon-wrapping" disabled>
+                        </div>
+                        <div class="input-group flex-nowrap mb-3">
+                            <button id="refresh-decl" class="btn btn-dark flex-shrink-0" type="button"
+                                onclick="refresh_declination()" style="display: none;">
+                                <i class="bi bi-arrow-clockwise me-1"></i>
+                                편각 재요청
+                            </button>
+                        </div>
+
+                        <div id="pos-accuracy" class="small fs-6 mb-4 fw-lighter">위치 정확도: ±0 (m)</div>
+
+                        <div class="d-flex mb-5">
+                            <button id="ok-btn" class="btn btn-dark flex-shrink-0" type="button" onclick="laturl()"
+                                disabled>
+                                <i class="bi bi-arrow-right-circle-fill me-1"></i>
+                                생성
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 map-wrapper">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- alerting toast -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong id="toast-title" class="me-auto">앙부일구 제작 프로그램</strong>
+                <small id="toast-time">1초 전</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body" id="toast-content">
+                편각 데이터를 가져오지 못하였습니다.<br>"편각 재요청" 버튼을 눌러 다시 시도해주세요!
+              </div>
+            </div>
+          </div>
+
+
+        <!-- Footer-->
+        <footer id="footerbox" class="py-5">
+            <div class="container">
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                        <p class="font-monospace">&lt; We make valuable softwares. /&gt;</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        Copyright &copy; <cite title="Source Title">모던 고천문 </cite>팀 | 2023 학생 과학 전람회
+                    </figcaption>
+                </figure>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- bootstrap v5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="./slick/slick.min.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcfSrOC4KTgo5EQxMjhqF9GYM-a6F-l5o&callback=initMap">
+        </script>
+
+    <script src="./js/makemodel.js"></script>
+</body>
+
+</html>
