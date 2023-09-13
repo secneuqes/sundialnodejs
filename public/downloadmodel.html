@@ -42,12 +42,13 @@
     <nav class="navbar bg-transparent">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="./">
                 <img src="./image/logowtxt.png" alt="logo" style="width: 4em;">
             </a>
             <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                <a href="#signup" class="text-white text-decoration-none px-3 py-1 rounded-4"
-                    style="background-color: #213555;">Sign Up</a>
+                <button type="button" class="btn btn-dark rounded-5" onclick="window.open(`https://github.com/kingsparkdev/sundialWeb`,'_blank')">
+                    <i class="bi bi-github me-2"></i>Github
+                </button>
                 <div class="dropdown">
                     <button id="lang-dropdown" class="btn btn-secondary dropdown-toggle" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,23 +76,39 @@
                         <div class="d-flex justify-content-center mb-4">
                             <div class="small fs-6 mb-4 fw-light">파일을 다운로드 받아 3D 프린터로 출력해보세요!</div>
                         </div>
-                        
-                        <div class="d-flex justify-content-center mb-3">
-                            <div class="spinner-border" role="status" style="--bs-spinner-border-width: 4px !important">
-                              <span class="visually-hidden">Loading...</span>
+
+                        <div class="d-flex justify-content-center mb-3 loader loader-spinner visually-hidden">
+                            <div class="spinner-border" role="status"
+                                style="--bs-spinner-border-width: 4px !important;">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center mb-3">
-                            <div class="mb-4 fw-light" style="font-size: 0.35em !important; color: gray;">파일을 생성하는 중입니다...</div>
+                        <div class="d-flex justify-content-center file-icon-large">
+                            <i class="bi bi-file-earmark-code" style="font-size: 2em;"></i>
+                        </div>
+                        <div class="d-flex justify-content-center file-icon-text">
+                            <div class="fw-middle" style="font-size: 0.5em;">
+                                <code>angbuilgu.stl</code> file ready
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center loader loader-text visually-hidden">
+                            <div class="fw-light" style="font-size: 0.35em !important; color: gray;">rendering file...</div>
+                        </div>
+                        <div class="d-flex justify-content-center success-icon visually-hidden">
+                            <div class="success-icon__tip"></div>
+                            <div class="success-icon__long"></div>
+                        </div>
+                        <div class="d-flex justify-content-center success-icon-text mt-3 visually-hidden">
+                            <div class="fw-light" style="font-size: 0.35em !important; color: gray;">download complete</div>
                         </div>
                         <!-- downlaod btn -->
-                        <div class="d-flex justify-content-center mb-5">
+                        <div class="d-flex justify-content-center mt-5 mb-5 btn-group-b">
                             <button id="ok-btn" class="btn btn-dark flex-shrink-0" type="button"
                                 onclick="downloadSTL()">
                                 <i class="bi bi-download"></i>
                                 다운로드
                             </button>
-                        </div>                        
+                        </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <div id="" class="small fs-3 mb-3 fw-bold">자주 묻는 질문</div>

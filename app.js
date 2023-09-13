@@ -1,10 +1,12 @@
 const express = require('express');
 const axios = require('axios');
 const { parseString } = require('xml2js');
-const fs = require('fs');
+const path = require('path');
+// const fs = require('fs');
 var bodyParser = require('body-parser');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 require('dotenv').config();
 
 const csrfMiddleware = csrf({ cookie: true });
@@ -14,6 +16,19 @@ app.use(express.static('public'));
 
 const PORT = process.env.PORT || 3000;
 
+app.use(
+    compression({
+        level: 6,
+        threshold: 100 * 1000,
+        filter: (req, res) => {
+            if (req.headers["x-no-compression"]) {
+                // header에 x-no-compression이 있으면, 압축하지 않도록 false를 반환한다.
+                return false;
+            }
+            return compression.filter(req, res);
+        },
+    })
+);
 
 app.use(cookieParser());
 app.use(csrfMiddleware);
@@ -37,6 +52,53 @@ app.get('/makemodel', (req, res) => {
 app.get('/downloadmodel', (req, res) => {
     res.sendFile(__dirname + "/public/downloadmodel.html");
 });
+
+// TODO: /learn/{title} 형식으로 get으로 페이지 띄우기
+
+app.get('/download/student', (req, res) => {
+    let value = req.headers.cookie.match('(^|;) ?' + 'lang' + '=([^;]*)(;|$)');
+    let language = value ? value[2] : null;
+    if (language === 'ko') {
+        let file = path.join(__dirname, "/public/assets/학습지/앙부일구 실험서(학생용).pdf");
+        res.download(file, '앙부일구 실험서(학생용).pdf', (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Error downloading file");
+            }
+        })
+    } else {
+        let file = path.join(__dirname, "/public/assets/학습지/exploring_the_principles_of_angbuilgu_forStudents.pdf");
+        res.download(file, 'exploring_the_principles_of_angbuilgu_forStudents.pdf', (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Error downloading file");
+            }
+        })
+    }
+})
+
+app.get('/download/teacher', (req, res) => {
+    let value = req.headers.cookie.match('(^|;) ?' + 'lang' + '=([^;]*)(;|$)');
+    let language = value ? value[2] : null;
+    if (language === 'ko') {
+        let file = path.join(__dirname, "/public/assets/학습지/앙부일구 실험서(교사용).pdf");
+        res.download(file, '앙부일구 실험서(교사용).pdf', (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Error downloading file");
+            }
+        })
+    } else {
+        let file = path.join(__dirname, "/public/assets/학습지/exploring_the_principles_of_angbuilgu_forTeachers.pdf");
+        res.download(file, 'exploring_the_principles_of_angbuilgu_forTeachers.pdf', (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Error downloading file");
+            }
+        })
+    }
+
+})
 
 app.post('/api/decl', (req, res) => {
     const apiUrl = `https://www.ngdc.noaa.gov/geomag-web/calculators/calculateDeclination?lat1=${req.body.lat}&lon1=${req.body.lon}&key=zNEw7&resultFormat=xml`;
