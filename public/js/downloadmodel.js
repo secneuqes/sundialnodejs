@@ -1,5 +1,6 @@
 async function downloadSTL() {
     try {
+        console.log("download clicked. starting rendering.");
         const url = new URL(window.location.href);
         const urlParams = url.searchParams;
         const latInfo = urlParams.get('latitude');
@@ -30,6 +31,7 @@ async function downloadSTL() {
             document.body.appendChild(element);
             element.click();
             document.body.removeChild(element);
+            console.log("download complete.")
         });
     } catch (error) {
         console.error('Error downloading STL:', error);
