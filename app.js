@@ -143,15 +143,15 @@ app.listen(PORT, () => {
 
 // TODO: 밑은 stl 파일 생성을 위한 스크립트
 
-const jscad = require('@jscad/modeling')
+const jscad = require('@jscad/modeling');
 const io = require('@jscad/io');
-const { cube, sphere, cylinder, circle, cylinderElliptic, cuboid } = jscad.primitives
-const { subtract, union } = jscad.booleans
-const { rotate, translate, center } = jscad.transforms
-const { extrudeLinear } = jscad.extrusions
-const { hullChain } = jscad.hulls
-const { vectorText } = jscad.text
-const { degToRad } = jscad.utils
+const { cube, sphere, cylinder, circle, cylinderElliptic, cuboid } = jscad.primitives;
+const { subtract, union } = jscad.booleans;
+const { rotate, translate, center } = jscad.transforms;
+const { extrudeLinear } = jscad.extrusions;
+const { hullChain } = jscad.hulls;
+const { vectorText } = jscad.text;
+const { degToRad } = jscad.utils;
 
 
 let latitude, declination;
