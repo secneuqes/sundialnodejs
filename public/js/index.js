@@ -26,10 +26,20 @@ $(document).ready(function () {
         setLanguageCookie('ko')
         setLanguage('ko');
     }
+
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+
+    if (!isMobile) {
+        $('.mergedImg').hide();
+        $('.slider').show();
+    } else {
+        $('.mergedImg').show();
+        $('.slider').hide();
+    }
 });
 
 const makemodel = () => {
-    window.location.href="./makemodel"
+    window.location.href = "./makemodel"
 }
 
 const setLanguage = (currentLanguage) => {
@@ -38,7 +48,7 @@ const setLanguage = (currentLanguage) => {
     });
 }
 
-$('.lang-select').on('click', function() {
+$('.lang-select').on('click', function () {
     const changedLang = $(this).data('lang');
     setLanguageCookie(changedLang);
     setLanguage(changedLang);
