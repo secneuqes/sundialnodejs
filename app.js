@@ -2,32 +2,44 @@ const express = require('express');
 const axios = require('axios');
 const { parseString } = require('xml2js');
 const fs = require('fs');
-const io = require('@jscad/io');
+var bodyParser = require('body-parser');
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
-const jscadmodel = require('./public/jscad/jscad.js');
+const csrfMiddleware = csrf({ cookie: true });
 
 const app = express();
 app.use(express.static('public'));
 
 const PORT = process.env.PORT || 3000;
 
+
+app.use(cookieParser());
+app.use(csrfMiddleware);
+app.use(bodyParser.json());
+
+app.use(function (req, res, next) {
+    res.cookie("XSRF-TOKEN", req.csrfToken());
+    next();
+});
+
+//////////////////////////////////////////////////
+
 app.get('/', (req, res) => {
-    console.log("index");
     res.sendFile(__dirname + "/public/index.html");
 });
 
 app.get('/makemodel', (req, res) => {
-    console.log("makemodel");
     res.sendFile(__dirname + "/public/makemodel.html");
 });
 
 app.get('/downloadmodel', (req, res) => {
-    console.log("downloadmodel");
     res.sendFile(__dirname + "/public/downloadmodel.html");
 });
 
-app.get('/api/decl', (req, res) => {
-    const apiUrl = `https://www.ngdc.noaa.gov/geomag-web/calculators/calculateDeclination?lat1=${req.query.lat}&lon1=${req.query.lon}&key=zNEw7&resultFormat=xml`;
+app.post('/api/decl', (req, res) => {
+    const apiUrl = `https://www.ngdc.noaa.gov/geomag-web/calculators/calculateDeclination?lat1=${req.body.lat}&lon1=${req.body.lon}&key=zNEw7&resultFormat=xml`;
 
     axios.get(apiUrl)
         .then(response => {
@@ -47,24 +59,16 @@ app.get('/api/decl', (req, res) => {
         });
 });
 
-app.get('/api/modelBlob', async (req, res) => {
+app.post('/api/modelinfo', async (req, res) => {
     try {
         console.log("started rendering jscad gemoetry!");
-        req.setTimeout(20000); // timeout 20second
-        const result = await main(req.query.latitude, req.query.decl);
-        console.log("jscad geometry created!");
-
-        const rawData = io.stlSerializer.serialize({ binary: false }, result);
-        const text = rawData[0]
-        console.log(rawData[0].length);
-        // fs.writeFileSync('cube.stl', text);
-        res.setHeader('Content-Type', 'application/octet-stream'); // Set the content type
-        res.setHeader('Content-Disposition', 'attachment; filename=cube.stl'); // Set the filename for download
-
-        // Send the response (text) to trigger download
-        res.send(text);
-
-        // return text;
+        console.log(req.body);
+        main(req.body.latitude, req.body.decl)
+            .then((text) => {
+                console.log("done rendering jscad gemoetry!");
+                res.set('Content-Type', 'text/plain');
+                res.send(text);
+            });
     } catch (error) {
         console.error('Error generating or sending STL file:', error);
         res.status(500).send('Internal Server Error');
@@ -78,6 +82,7 @@ app.listen(PORT, () => {
 // TODO: 밑은 stl 파일 생성을 위한 스크립트
 
 const jscad = require('@jscad/modeling')
+const io = require('@jscad/io');
 const { cube, sphere, cylinder, circle, cylinderElliptic, cuboid } = jscad.primitives
 const { subtract, union } = jscad.booleans
 const { rotate, translate, center } = jscad.transforms
@@ -86,6 +91,7 @@ const { hullChain } = jscad.hulls
 const { vectorText } = jscad.text
 const { degToRad } = jscad.utils
 
+
 let latitude, declination;
 // const latitude = 37.49195;
 // const declination = -8.89144;
@@ -93,24 +99,29 @@ const lineThickness = 0.13;
 
 const rightAscension = [-16.6, -11.7, -6.1, 0, 6.1, 11.7, 16.6, 22.3, 22.7, 23.5, 22.7, 20.3, 16.6, 11.7, 6.1, 0, -6.1, -11.7, -16.6, -20.3, -22.7, -23.5, -22.7, -20.3]; // 24절기
 
-const main = (latitude, declination) => {
-    latitude = latitude;
-    declination = declination;
-    return union(
-        angle(),
-        legs(),
-        subtract(
-            body(),
-            union(
-                dec(),
-                season(),
-                hour(),
-                minute()
+const main = async (lat, decl) => {
+    latitude = parseInt(lat);
+    declination = parseInt(decl);
+    const result = (
+        union(
+            angle(),
+            legs(),
+            subtract(
+                body(),
+                union(
+                    dec(),
+                    season(),
+                    hour(),
+                    minute()
+                )
             )
         )
-    )
+    );
+    const rawData = io.stlSerializer.serialize({ binary: false }, result);
+    const text = rawData[0];
+    console.log("file size: " + parseInt(text.length));
+    return text;
 }
-
 const body = () => {
     return subtract(
         union(

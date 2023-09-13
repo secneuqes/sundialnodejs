@@ -7,6 +7,10 @@ const { hullChain } = jscad.hulls
 const { vectorText } = jscad.text
 const { degToRad } = jscad.utils
 
+const fs = require('fs');
+const io = require('@jscad/io');
+
+
 const latitude = 37.49195;
 const declination = -8.89144;
 const lineThickness = 0.13;
@@ -14,7 +18,7 @@ const lineThickness = 0.13;
 const rightAscension = [-16.6, -11.7, -6.1, 0, 6.1, 11.7, 16.6, 22.3, 22.7, 23.5, 22.7, 20.3, 16.6, 11.7, 6.1, 0, -6.1, -11.7, -16.6, -20.3, -22.7, -23.5, -22.7, -20.3]; // 24절기
 
 const main = () => {
-    return (
+    const result = (
         union(
             angle(),
             legs(),
@@ -29,6 +33,10 @@ const main = () => {
             )
         )
     );
+    const rawData = io.stlSerializer.serialize({ binary: false }, result);
+    const text = rawData[0];
+    console.log("jscad geometry created!");
+    fs.writeFileSync('cube.stl', text);
 }
 
 const body = () => {
@@ -188,5 +196,7 @@ const buildFlatText = (input, height, radius, x, y) => {
     return union(lineSegments)
 }
 
+
+main();
 // module.exports = main;
-module.exports = { main };
+// module.exports = { main };

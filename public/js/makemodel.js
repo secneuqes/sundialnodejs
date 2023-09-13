@@ -18,6 +18,7 @@ $(window).on('load', async () => {
         } else {
             $('#mag-declination').val("N/A");
             $('#refresh-decl').show();
+            toastBootstrap.show();
         }
     });
 });
@@ -115,7 +116,18 @@ function initMap() {
 }
 
 const fetchData = async () => {
-    const response = await fetch(`/api/decl?lat=${latitude}&lon=${longitude}`, { method: 'GET' });
+    const response = await fetch(`/api/decl`, { 
+        method: 'POST',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "CSRF-Token": Cookies.get("XSRF-TOKEN"),
+        },
+        body: JSON.stringify({
+            lat: latitude,
+            lon: longitude
+        })
+    });
     const data = await response.json();
     return data;
 }
