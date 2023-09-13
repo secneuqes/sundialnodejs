@@ -29,7 +29,7 @@ $(document).ready(function () {
 });
 
 const makemodel = () => {
-    window.location.href="/makemodel"
+    window.location.href="./makemodel"
 }
 
 const setLanguage = (currentLanguage) => {

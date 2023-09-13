@@ -133,7 +133,7 @@ const fetchData = async () => {
 }
 
 function laturl() {
-    location.href = "/downloadmodel?latitude=" + String(latitude) + "&decl=" + String(decl);
+    location.href = "./downloadmodel?latitude=" + String(latitude) + "&decl=" + String(decl);
 }
 
 // language setting
