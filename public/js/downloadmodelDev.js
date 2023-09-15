@@ -10,7 +10,7 @@ $('#ok-btn').click(() => {
     $(".file-icon-text").addClass('visually-hidden');
     setTimeout(function () {
         downloadSTL();
-    }, 0);
+    }, 50);
 })
 
 const downloadSTL = async () => {

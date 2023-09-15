@@ -40722,6 +40722,10 @@ function isNCNameChar(c) {
 exports.isNCNameChar = isNCNameChar;
 
 },{}],492:[function(require,module,exports){
+// bundling 방법은 .../js 디렉토리로 들어가서 아래의 명령어를 실행한다.
+// browserify downloadmodelDev.js -o bundle.js
+// 제작된 해당 bundle.js 파일이 html 과 연결되어 실행될 파일이다.
+
 $('#ok-btn').click(() => {
     $('#ok-btn').attr('disabled', true);
     $(".loader-spinner").removeClass('visually-hidden');
@@ -40730,7 +40734,7 @@ $('#ok-btn').click(() => {
     $(".file-icon-text").addClass('visually-hidden');
     setTimeout(function () {
         downloadSTL();
-    }, 0);
+    }, 50);
 })
 
 const downloadSTL = async () => {
