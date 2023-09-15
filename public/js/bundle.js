@@ -40723,6 +40723,7 @@ exports.isNCNameChar = isNCNameChar;
 
 },{}],492:[function(require,module,exports){
 // bundling 방법은 .../js 디렉토리로 들어가서 아래의 명령어를 실행한다.
+// 그전에 기존의 bundle.js 는 삭제하길 바람.
 // browserify downloadmodelDev.js -o bundle.js
 // 제작된 해당 bundle.js 파일이 html 과 연결되어 실행될 파일이다.
 
