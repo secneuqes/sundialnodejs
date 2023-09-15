@@ -1,23 +1,81 @@
-const jscad = require('@jscad/modeling')
-const { cube, sphere, cylinder, circle, cylinderElliptic, cuboid } = jscad.primitives
-const { subtract, union } = jscad.booleans
-const { rotate, translate, center } = jscad.transforms
-const { extrudeLinear } = jscad.extrusions
-const { hullChain } = jscad.hulls
-const { vectorText } = jscad.text
-const { degToRad } = jscad.utils
+// bundling 방법은 .../js 디렉토리로 들어가서 아래의 명령어를 실행한다.
+// browserify downloadmodelDev.js -o bundle.js
+// 제작된 해당 bundle.js 파일이 html 과 연결되어 실행될 파일이다.
 
-const fs = require('fs');
+$('#ok-btn').click(() => {
+    $('#ok-btn').attr('disabled', true);
+    $(".loader-spinner").removeClass('visually-hidden');
+    $(".loader-text").removeClass('visually-hidden');
+    $(".file-icon-large").addClass('visually-hidden');
+    $(".file-icon-text").addClass('visually-hidden');
+    setTimeout(function () {
+        downloadSTL();
+    }, 0);
+})
+
+const downloadSTL = async () => {
+    try {
+        console.log("download clicked. starting rendering.");
+        const url = new URL(window.location.href);
+        const urlParams = url.searchParams;
+        const latInfo = urlParams.get('latitude');
+        const declInfo = urlParams.get('decl');
+        const text = await main(latInfo, declInfo);
+
+        const element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', 'angbuilgu.stl');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+        $(".loader-spinner").addClass('visually-hidden');
+        $(".loader-text").addClass('visually-hidden');
+        $(".success-icon").removeClass('visually-hidden');
+        $(".success-icon-text").removeClass('visually-hidden');
+        $(".success-icon").html(`<div class="success-icon__tip"></div>
+            <div class="success-icon__long"></div>`);
+        $('#ok-btn').attr('disabled', true);
+        $('#ok-btn').html('완료');
+        $('.btn-group-b').append(`
+            <button id="gohome-btn" class="btn btn-dark flex-shrink-0 ms-3" type="button"
+                onclick="window.location.href = './'">
+                <i class="bi bi-house-door"></i>
+                메인 페이지
+            </button>`);
+        $('#ok-btn').css('background-color', '#4BB543');
+        $('#ok-btn').css('border-color', '#4BB543');
+        console.log("download complete.");
+    } catch (error) {
+        console.error('Error downloading STL:', error);
+        alert("오류가 발생하였습니다. 새로고침 후에 다시 시도해주세요.");
+    }
+}
+
+const searchParam = (key) => {
+    return new URLSearchParams(location.search).get(key);
+};
+
+// JSCAD
+
+const jscad = require('@jscad/modeling');
 const io = require('@jscad/io');
+const { cube, sphere, cylinder, circle, cylinderElliptic, cuboid } = jscad.primitives;
+const { subtract, union } = jscad.booleans;
+const { rotate, translate, center } = jscad.transforms;
+const { extrudeLinear } = jscad.extrusions;
+const { hullChain } = jscad.hulls;
+const { vectorText } = jscad.text;
+const { degToRad } = jscad.utils;
 
-
-const latitude = 37.49195;
-const declination = -8.89144;
+let latitude, declination;
 const lineThickness = 0.13;
 
 const rightAscension = [-16.6, -11.7, -6.1, 0, 6.1, 11.7, 16.6, 22.3, 22.7, 23.5, 22.7, 20.3, 16.6, 11.7, 6.1, 0, -6.1, -11.7, -16.6, -20.3, -22.7, -23.5, -22.7, -20.3]; // 24절기
 
-const main = () => {
+const main = async (lat, decl) => {
+    latitude = parseInt(lat);
+    declination = parseInt(decl);
     const result = (
         union(
             angle(),
@@ -35,10 +93,9 @@ const main = () => {
     );
     const rawData = io.stlSerializer.serialize({ binary: false }, result);
     const text = rawData[0];
-    console.log("jscad geometry created!");
-    fs.writeFileSync('test.stl', text);
+    console.log("file size: " + String(parseInt(text.length)) + ' B');
+    return text;
 }
-
 const body = () => {
     return subtract(
         union(
@@ -126,7 +183,7 @@ const season = () => {
 
     return subtract(
         result,
-        translate([0, 0, 20], cube({ size: 40 })) // 여기는 선택적으로 삭제 가능.
+        translate([0, 0, 20], cube({ size: 40 }))
     )
 }
 
@@ -145,8 +202,6 @@ const hour = () => {
         translate([0, 0, 20], cube({ size: 40 }))
     )
 }
-
-// TODO: faster minute function
 
 const minute = () => {
     const timeSum = [];
@@ -187,16 +242,11 @@ const NStext = () => {
 
 const buildFlatText = (input, height, radius, x, y) => {
     const lineCorner = circle({ radius })
-    const lineSegmentPointArrays = vectorText({ xOffset: x, yOffset: y, height, input }) // line segments for each character
+    const lineSegmentPointArrays = vectorText({ xOffset: x, yOffset: y, height, input })
     const lineSegments = []
-    lineSegmentPointArrays.forEach((segmentPoints) => { // process the line segment
+    lineSegmentPointArrays.forEach((segmentPoints) => {
         const corners = segmentPoints.map((point) => translate(point, lineCorner))
         lineSegments.push(hullChain(corners))
     })
     return union(lineSegments)
 }
-
-
-main();
-// module.exports = main;
-// module.exports = { main };
