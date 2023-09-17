@@ -144,6 +144,7 @@ const setLanguage = (currentLanguage) => {
         $('#longitudeTT').html("경도");
         $('#mag-declinationTT').html("편각");
         $('#pos-accuracy').html("위치 정확도: ±" + accuracy + " (m)");
+        $('#titletxt').html('앙부일구 3D 모델 생성');
         $('#locDatatxt').html('위치 데이터');
         $('#refresh-decl').html('<i class="bi bi-arrow-clockwise me-1"></i>편각 재요청');
         $('#ok-btn').html('<i class="bi bi-arrow-right-circle-fill me-1"></i>생성');
@@ -155,6 +156,7 @@ const setLanguage = (currentLanguage) => {
         $('#longitudeTT').html("longitude");
         $('#mag-declinationTT').html("mag declination");
         $('#pos-accuracy').html("position accuracy: ±" + accuracy + " (m)");
+        $('#titletxt').html('3D model generation');
         $('#locDatatxt').html('Location data');
         $('#refresh-decl').html('<i class="bi bi-arrow-clockwise me-1"></i>reload mag declination');
         $('#ok-btn').html('<i class="bi bi-arrow-right-circle-fill me-1"></i>Create');
@@ -166,6 +168,7 @@ const setLanguage = (currentLanguage) => {
 }
 
 $('.lang-select').on('click', function () {
+    console.log("ㄴㄴㄴㄴ");
     const changedLang = $(this).data('lang');
     setLanguageCookie(changedLang);
     setLanguage(changedLang);

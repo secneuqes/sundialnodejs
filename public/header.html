@@ -1,0 +1,69 @@
+<!-- header design inspired by https://consumet.org/ -->
+<div class="header-bar"></div>
+<header class="navbar navbar-expand-md navbar-light doks-navbar">
+    <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
+        <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;">앙부일구</a>
+        <button class="btn btn-menu d-block d-md-none order-5" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-menu">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg></button>
+        <div class="offcanvas offcanvas-end border-0 py-md-1" tabindex="-1" id="offcanvasDoks" data-bs-backdrop="true"
+            aria-labelledby="offcanvasDoksLabel">
+            <div class="header-bar d-md-none"></div>
+            <div class="offcanvas-header d-md-none">
+                <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel">
+                    <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;">앙부일구</a>
+                </h2><button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas"
+                    aria-label="Close main menu"></button>
+            </div>
+            <div class="offcanvas-body px-4">
+                <h3 class="h6 text-uppercase mb-3 d-md-none">페이지</h3>
+                <ul class="nav flex-column flex-md-row ms-md-n3">
+                    <li class="nav-item"><a class="nav-link ps-0 py-1" href="./makemodel">3D 모델 제작</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link ps-0 py-1" href="./learn">학습하기</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link ps-0 py-1" href="./extensions">Extensions</a></li>
+                    <li class="nav-item"><a class="nav-link ps-0 py-1" href="./devinfo">개발자</a></li>
+                </ul>
+                <hr class="text-black-50 my-4 d-md-none">
+                <h3 class="h6 text-uppercase mb-3 d-md-none">기타</h3>
+                <ul class="nav flex-column flex-md-row ms-md-auto">
+                    <li class="nav-item">
+                        <a class="nav-link ps-0 py-1" href="https://github.com/kingsparkdev/sundialnodejs">
+                            <i class="bi bi-github me-1"></i> Github
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ps-0 py-1" type="button" data-bs-toggle="modal" data-bs-target="#langModal">
+                            <i class="bi bi-translate me-1"></i> Language
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="modal fade" id="langModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="langModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="langModal">Language setting</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary lang-select me-2" data-lang="ko" data-bs-dismiss="modal">한국어 🇰🇷</button>
+                    <button type="button" class="btn btn-primary lang-select" data-lang="en" data-bs-dismiss="modal">English 🇬🇧</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
