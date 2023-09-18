@@ -67,49 +67,45 @@ app.get('/devinfo', (req, res) => {
 
 // TODO: /learn/{title} 형식으로 get으로 페이지 띄우기
 
-app.get('/download/student', (req, res) => {
-    let value = req.headers.cookie.match('(^|;) ?' + 'lang' + '=([^;]*)(;|$)');
-    let language = value ? value[2] : null;
-    if (language === 'ko') {
-        let file = path.join(__dirname, "/public/assets/학습지/앙부일구 실험서(학생용).pdf");
-        res.download(file, '앙부일구 실험서(학생용).pdf', (err) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send("Error downloading file");
-            }
-        })
-    } else {
-        let file = path.join(__dirname, "/public/assets/학습지/exploring_the_principles_of_angbuilgu_forStudents.pdf");
-        res.download(file, 'exploring_the_principles_of_angbuilgu_forStudents.pdf', (err) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send("Error downloading file");
-            }
-        })
-    }
+app.get('/download/student/en', (req, res) => {
+    let file = path.join(__dirname, "/public/assets/학습지/exploring_the_principles_of_angbuilgu_forStudents.pdf");
+    res.download(file, 'exploring_the_principles_of_angbuilgu_forStudents.pdf', (err) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Error downloading file");
+        }
+    })
 })
 
-app.get('/download/teacher', (req, res) => {
-    let value = req.headers.cookie.match('(^|;) ?' + 'lang' + '=([^;]*)(;|$)');
-    let language = value ? value[2] : null;
-    if (language === 'ko') {
-        let file = path.join(__dirname, "/public/assets/학습지/앙부일구 실험서(교사용).pdf");
-        res.download(file, '앙부일구 실험서(교사용).pdf', (err) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send("Error downloading file");
-            }
-        })
-    } else {
-        let file = path.join(__dirname, "/public/assets/학습지/exploring_the_principles_of_angbuilgu_forTeachers.pdf");
-        res.download(file, 'exploring_the_principles_of_angbuilgu_forTeachers.pdf', (err) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send("Error downloading file");
-            }
-        })
-    }
+app.get('/download/student/ko', (req, res) => {
+    let file = path.join(__dirname, "/public/assets/학습지/앙부일구 실험서(학생용).pdf");
+    res.download(file, '앙부일구 실험서(학생용).pdf', (err) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Error downloading file");
+        }
+    })
 
+})
+
+app.get('/download/teacher/en', (req, res) => {
+    let file = path.join(__dirname, "/public/assets/학습지/exploring_the_principles_of_angbuilgu_forTeachers.pdf");
+    res.download(file, 'exploring_the_principles_of_angbuilgu_forTeachers.pdf', (err) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Error downloading file");
+        }
+    })
+})
+
+app.get('/download/teacher/ko', (req, res) => {
+    let file = path.join(__dirname, "/public/assets/학습지/앙부일구 실험서(교사용).pdf");
+    res.download(file, '앙부일구 실험서(교사용).pdf', (err) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Error downloading file");
+        }
+    })
 })
 
 app.post('/api/decl', (req, res) => {
