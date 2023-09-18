@@ -1,0 +1,35 @@
+<div class="modal" tabindex="-1" id="sunMoveModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">태양의 일주권 시뮬레이션</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe style="overflow-y: hidden;" src="https://javalab.org/diurnal_motion_of_sun/" width="100%"
+                    height="900px" scrolling="no" sandbox="allow-scripts allow-same-origin allow-downloads"
+                    allow="fullscreen; geolocation;" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="modal-footer">
+                <div class="fs-6 lead">- by javalab -</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="lead">
+    앙부일구의 주요 원리는 태양의 일주운동을 시반에 투영하는 것입니다. 그런데 이러한 태양의 일주권이 매일 같지 않다는 사실 알고 계셨나요? 황도와 지구의 적도가 일치하지 않기 때문에 계절에 따라 태양의 일주권이 달리지게 됩니다. 절기선과 절기선 사이의 간격이 다른 것도 이러한 원리 때문이에요. 태양의 일주권은 날짜가 달라져도 변하고, 위도가 달라져도 변하게 됩니다. 지평면과 일주권이 이루는 각이 달라지기  때문입니다. 그래서 북점의 위치가 달라지게 되고, 영침의 각도도 달라져야해요. 
+    <br>버튼을 눌러 위도별, 절기별 태양의 일주권을 확인해보아요!
+<div class="d-flex mb-5">
+    <button id="ok-btn" class="btn btn-dark flex-shrink-0" type="button" data-bs-toggle="modal"
+        data-bs-target="#sunMoveModal">
+        <i class="bi bi-arrow-right-circle-fill me-1"></i>
+        태양의 일주권 시뮬레이션
+    </button>
+</div>
+</p>
+<figure class="figure">
+    <img class="img-fluid figure-img" src="../image/learnImg/태양의_일주권.png" alt="태양의 일주권">
+    <figcaption class="figure-caption">| Fig.1 | 태양의 일주권</figcaption>
+</figure>

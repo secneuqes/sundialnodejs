@@ -24,11 +24,11 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
 
     <!-- slick slider -->
-    <link rel="stylesheet" type="text/css" href="./slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
 
     <!-- static -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -37,7 +37,7 @@
     <div class="header-bar"></div>
     <header class="navbar navbar-expand-md navbar-light doks-navbar">
         <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
-            <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;">앙부일구</a>
+            <a class="navbar-brand p-0 me-auto logo-text" href="../" style="font-size: 1.3em;">앙부일구</a>
             <button class="btn btn-menu d-block d-md-none order-5" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu"><svg
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -52,19 +52,19 @@
                 <div class="header-bar d-md-none"></div>
                 <div class="offcanvas-header d-md-none">
                     <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel">
-                        <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;">앙부일구</a>
+                        <a class="navbar-brand p-0 me-auto logo-text" href="../" style="font-size: 1.3em;">앙부일구</a>
                     </h2><button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas"
                         aria-label="Close main menu"></button>
                 </div>
                 <div class="offcanvas-body px-4">
                     <h3 class="h6 text-uppercase mb-3 d-md-none">페이지</h3>
                     <ul class="nav flex-column flex-md-row ms-md-n3">
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./makemodel">3D 모델 제작</a>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="../makemodel">3D 모델 제작</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./learn">학습하기</a>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1 fw-bolder" href="../learn">학습하기</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./extensions">Extensions</a></li>
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./devinfo">개발자</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="../extensions">Extensions</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="../devinfo">개발자</a></li>
                     </ul>
                     <hr class="text-black-50 my-4 d-md-none">
                     <h3 class="h6 text-uppercase mb-3 d-md-none">기타</h3>
@@ -96,6 +96,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center">
+                        <p class="lead fs-6">* 아직 지원되지 않는 기능입니다.</p>
                         <button type="button" class="btn btn-primary lang-select me-2" data-lang="ko"
                             data-bs-dismiss="modal">한국어 🇰🇷</button>
                         <button type="button" class="btn btn-primary lang-select" data-lang="en"
@@ -105,10 +106,10 @@
             </div>
         </div>
     </div>
-    
+
     <main>
         <div class="container-xxl flex-wrap flex-md-nowrap row">
-            <div class="col-lg-3 col-md-3 col-sm-0">
+            <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="flex-shrink-0 pt-5 bg-white" style="width: 100%;">
                     <a href="" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
                         <span class="fs-5" style="font-weight: 700;">학습하기</span>
@@ -121,9 +122,8 @@
                             </button>
                             <div class="collapse show" id="home-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">개요</a></li>
-                                    <li><a href="#" class="link-dark rounded">앙부일구의 역사적 의의</a></li>
-                                    <li><a href="#" class="link-dark rounded">(미정)</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="앙부일구" data-title="개요">개요</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="앙부일구" data-title="앙부일구의-역사적-의의">앙부일구의 역사적 의의</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -134,10 +134,10 @@
                             </button>
                             <div class="collapse" id="dashboard-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">앙부일구의 구조</a></li>
-                                    <li><a href="#" class="link-dark rounded">앙부일구의 원리</a></li>
-                                    <li><a href="#" class="link-dark rounded">경도차와 균시차</a></li>
-                                    <li><a href="#" class="link-dark rounded">태양의 일주권</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="앙부일구의-과학" data-title="앙부일구의-구조">앙부일구의 구조</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="앙부일구의-과학" data-title="앙부일구의-원리">앙부일구의 원리</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="앙부일구의-과학" data-title="경도차와-균시차">경도차와 균시차</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="앙부일구의-과학" data-title="태양의-일주권">태양의 일주권</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -148,8 +148,8 @@
                             </button>
                             <div class="collapse" id="orders-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">연구 초록</a></li>
-                                    <li><a href="#" class="link-dark rounded">연구 보고서</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="연구-소개" data-title="연구-초록">연구 초록</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="연구-소개" data-title="연구-보고서">연구 보고서</a></li>
                                     <!-- <li><a href="#" class="link-dark rounded">Shipped</a></li>
                                     <li><a href="#" class="link-dark rounded">Returned</a></li> -->
                                 </ul>
@@ -163,28 +163,36 @@
                             </button>
                             <div class="collapse" id="account-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li><a href="#" class="link-dark rounded">학습자료 소개</a></li>
-                                    <li><a href="#" class="link-dark rounded">학생용</a></li>
-                                    <li><a href="#" class="link-dark rounded">교사용</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="학습자료" data-title="학습자료-소개">학습자료 소개</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="학습자료" data-title="학생용">학생용</a></li>
+                                    <li><a href="#" class="link-dark rounded" data-category="학습자료" data-title="교사용">교사용</a></li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-12">
-                <div class="pt-5 bg-white" style="width: 100%;">
-                    <h3>HI</h3>
-                    <h5>I am ksd.</h4>
+            <div class="content-right col-lg-9 col-md-9 col-sm-12">
+                <div class="pt-5 px-2 bg-white">
+                    <button type="button" class="btn learn-subtitle rounded-3 fs-6 mb-2">앙부일구의 과학</button>
+                    <div class="learn-title fs-2 mb-3">앙부일구의 구조</div>
+                    <div class="content-container">
+                        <p class="lead">앙부일구를 이루는 둥근 그릇은 시반입니다. 시계 바닥의 역할을 하며 앙부일구를 읽을 수 있도록 시각선과 절기선을 표시한 그릇입니다. 시각선은 이름처럼
+                            시각을 표시하는 세로선입니다. 시각선과 시각선 사이 간격은 15분 간격입니다. 절기선은 절기, 즉 날짜를 표시하는 가로선입니다. 총 13개의 위선으로 24절기를 표현해요.
+                            앙부일구를 이루고 있는 것 중 가장 중요한 것은 영침입니다. 영침은 해시계의 시곗바늘로, 영침 끝이 북점을 가리키며 영침의 그림자를 통해 시반 위의 시각과 절기를 읽을 수
+                            있어요. 또한 이러한 시각과 절기의 정보를 담은 원판을 지평환이라고 합니다.</p>
+                        <figure class="figure">
+                            <img class="img-fluid figure-img" src="../image/learnImg/앙부일구의_구조.png" alt="앙부일구의 구조">
+                            <figcaption class="figure-caption">| Fig.1 | 앙부일구의 구조</figcaption>
+                        </figure>
+                    </div>
                 </div>
             </div>
         </div>
-
-
     </main>
 
     <!-- Footer-->
-    <footer id="footerbox" class="py-5">
+    <footer id="footerbox" class="py-3">
         <div class="container">
             <figure class="text-center">
                 <blockquote class="blockquote">
@@ -203,11 +211,10 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="./slick/slick.min.js"></script>
+    <script type="text/javascript" src="../slick/slick.min.js"></script>
 
-    <script src="./js/index.js"></script>
-
-    <script src="./js/sidebar.js"></script>
+    <script type="text/javascript" src="../js/learn.js"></script>
+    <script type="text/javascript" src="../js/sidebar.js"></script>
 </body>
 
 </html>

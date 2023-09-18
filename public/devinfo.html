@@ -23,13 +23,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
 
+    <!-- slick slider -->
+    <link rel="stylesheet" type="text/css" href="./slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css" />
+
     <!-- static -->
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
 
 <body class="vw-100" style="overflow-x: hidden;">
-
     <!-- header design inspired by https://consumet.org/ -->
     <div class="header-bar"></div>
     <header class="navbar navbar-expand-md navbar-light doks-navbar">
@@ -56,12 +59,12 @@
                 <div class="offcanvas-body px-4">
                     <h3 class="h6 text-uppercase mb-3 d-md-none">페이지</h3>
                     <ul class="nav flex-column flex-md-row ms-md-n3">
-                        <li class="nav-item"><a class="nav-link ps-0 py-1 fw-bolder" href="./makemodel">3D 모델 제작</a>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./makemodel">3D 모델 제작</a>
                         </li>
                         <li class="nav-item"><a class="nav-link ps-0 py-1" href="./learn">학습하기</a>
                         </li>
                         <li class="nav-item"><a class="nav-link ps-0 py-1" href="./extensions">Extensions</a></li>
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./devinfo">개발자</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1 fw-bolder" href="./devinfo">개발자</a></li>
                     </ul>
                     <hr class="text-black-50 my-4 d-md-none">
                     <h3 class="h6 text-uppercase mb-3 d-md-none">기타</h3>
@@ -103,70 +106,56 @@
             </div>
         </div>
     </div>
-    <!-- main -->
+
     <main>
-        <section id="intro"
-            class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center text-black fs-1">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6">
-                        <div id="titletxt" class="small fs-4 mb-1 fw-bold">앙부일구 3D 모델 생성</div>
-                        <div id="locDatatxt" class="small fs-2 mb-4 fw-bold">위치 데이터</div>
-                        <div class="input-group flex-nowrap mb-3">
-                            <span id="latitudeTT" class="input-group-text fw-bold" id="addon-wrapping">위도</span>
-                            <input id="latitude" type="text" class="form-control" placeholder="위도" aria-label="latitude"
-                                aria-describedby="addon-wrapping" disabled>
-                        </div>
-                        <div class="input-group flex-nowrap mb-3">
-                            <span id="longitudeTT" class="input-group-text fw-bold" id="addon-wrapping">경도</span>
-                            <input id="longitude" type="text" class="form-control" placeholder="경도"
-                                aria-label="longitude" aria-describedby="addon-wrapping" disabled>
-                        </div>
-                        <div class="input-group flex-nowrap mb-3">
-                            <span id="mag-declinationTT" class="input-group-text fw-bold" id="addon-wrapping">편각</span>
-                            <input id="mag-declination" type="text" class="form-control" placeholder="편각"
-                                aria-label="mag_declination" aria-describedby="addon-wrapping" disabled>
-                        </div>
-                        <div class="input-group flex-nowrap mb-3">
-                            <button id="refresh-decl" class="btn btn-dark flex-shrink-0" type="button"
-                                onclick="refresh_declination()" style="display: none;">
-                                <i class="bi bi-arrow-clockwise me-1"></i>
-                                편각 재요청
-                            </button>
-                        </div>
-
-                        <div id="pos-accuracy" class="small fs-6 mb-4 fw-lighter">위치 정확도: ±0 (m)</div>
-
-                        <div class="d-flex mb-5">
-                            <button id="ok-btn" class="btn btn-dark flex-shrink-0" type="button" onclick="laturl()"
-                                disabled>
-                                <i class="bi bi-arrow-right-circle-fill me-1"></i>
-                                생성
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-6 map-wrapper">
-                        <div id="map"></div>
-                    </div>
-                </div>
+        <div class="container-xxl flex-wrap flex-md-nowrap row">
+            <div class="col-lg-3 col-md-3 col-sm-0">
+                <div class="flex-shrink-0 pt-5 bg-white" style="width: 100%;"></div>
             </div>
-        </section>
-
-        <!-- alerting toast -->
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <img src="./image/shortcutIco.png" class="rounded me-2" alt="angbuilgu" style="width: 1.3em;">
-                    <strong id="toast-title" class="me-auto">앙부일구 제작 프로그램</strong>
-                    <small id="toast-time">1초 전</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="pt-5 pb-3 bg-white" style="width: 100%;">
+                    <h2 class="mb-3" style="font-weight: 600;">개발자</h2>
+                    <p class="lead fs-6">함께한 개발한 팀을 소개합니다!</p>
                 </div>
-                <div class="toast-body" id="toast-content">
-                    편각 데이터를 가져오지 못하였습니다.<br>"편각 재요청" 버튼을 눌러 다시 시도해주세요!
+                <div class="card mb-2">
+                    <div class="card-body row">
+                        <img class="col-1 mb-auto mt-auto px-2" src="./image/logo_ishs.png" alt="인천과학고 로고">
+                        <p class="lead col-auto mb-auto mt-auto fs-5 px-1" style="font-weight:500;">인천과학고등학교</p>
+                        <p class="lead col-auto mb-auto mt-auto fs-6">| 모던 고천문 팀 |</p>
+                    </div>
+                </div>
+                <div class="row row-cols-2 g-2 mb-3">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><strong>박준서</strong><br><p class="lead fs-6 mt-2" style="font-weight:200;">| 개발 총괄 |</p></h5> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><strong>권도현</strong><br><p class="lead fs-6 mt-2" style="font-weight:200;">| 3D 모델 개발 및 학습자료 개발 |</p></h5> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><strong>김동욱</strong><br><p class="lead fs-6 mt-2" style="font-weight:200;">| 3D 모델 개발 및 학습자료 개발 |</p></h5> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><strong>신지은</strong><br><p class="lead fs-6 mt-2" style="font-weight:200;">| 연구 지도 교사 |</p></h5> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- Footer-->
@@ -190,12 +179,6 @@
         crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="./slick/slick.min.js"></script>
-
-    <script src="./js/makemodel.js"></script>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcfSrOC4KTgo5EQxMjhqF9GYM-a6F-l5o&callback=initMap">
-        </script>
 </body>
 
 </html>

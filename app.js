@@ -57,6 +57,14 @@ app.get('/downloadmodel', (req, res) => {
     res.sendFile(__dirname + "/public/downloadmodel.html");
 });
 
+app.get('/extensions', (req, res) => {
+    res.sendFile(__dirname + "/public/extensions.html");
+})
+
+app.get('/devinfo', (req, res) => {
+    res.sendFile(__dirname + "/public/devinfo.html");
+})
+
 // TODO: /learn/{title} 형식으로 get으로 페이지 띄우기
 
 app.get('/download/student', (req, res) => {
