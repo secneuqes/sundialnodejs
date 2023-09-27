@@ -62,7 +62,7 @@ app.get('/extensions', (req, res) => {
 })
 
 app.get('/devinfo', (req, res) => {
-    res.sendFile(__dirname + "/public/devinfo.html");
+    res.sendFile(__dirname + "/public/devinfoOnContest.html");
 })
 
 // TODO: /learn/{title} 형식으로 get으로 페이지 띄우기
