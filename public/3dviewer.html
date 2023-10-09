@@ -113,78 +113,53 @@
 
     <!-- main -->
     <main>
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-2"></div>
-                <div class="preview-card col-8">
-                    <div class="preview-card__wrp">
-                        <div class="preview-card__item">
-                            <div class="preview-card__img">
-                                <img src="./image/extensions_3dviewer.png"
-                                    alt="preview-card">
-                            </div>
-                            <div class="preview-card__content">
-                                <span class="preview-card__code" data-langnum="8">앙부일구의 구조</span>
-                                <div class="preview-card__title" data-langnum="9">앙부일구 3D 뷰어</div>
-                                <div class="preview-card__text" data-langnum="10">온라인 상에서 앙부일구의 3D 모형을 돌려보며 앙부일구의 구조에 대하여 학습하여보세요!</div>
-                                <a href="/3dviewer" class="preview-card__button" data-langnum="11">
-                                    <i class="bi bi-arrow-right-circle-fill me-2"></i> 체험하기
-                                </a>
-                            </div>
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <div class="small mb-1 fs-5" data-langnum="8">온라인 상에서 체험해보세요!</div>
+                    <h1 class="fs-1 fw-bolder mb-4" data-langnum="9">앙부일구 3D 뷰어</h1>
+                    <p class="lead fs-6 mb-4" style="text-align: justify;" data-langnum="10">
+                        온라인 상에서 앙부일구의 구조를 입체적으로 확인해보세요! '학습하기'에서 학습할 수 있는 앙부일구의 구조를 직접 확인하고, 각 구조가 갖는 역할에 대하여 알아봄으로써 앙부일구의 과학적 가치를 느껴보시길 바랍니다.<br>
+                        아래의 버튼을 눌러 '학습하기' 세션에서 앙부일구의 구조에 대하여 자세히 학습해보세요!
+                    </p>
+                        <div class="d-flex mb-5">
+                            <button id="ok-btn" class="btn btn-dark flex-shrink-0" type="button" onclick="window.location.href='/learn'" data-langnum="11">
+                                <i class="bi bi-arrow-right-circle-fill me-1"></i>
+                                학습하기
+                            </button>
                         </div>
-
-                    </div>
-                </div>
-                <div class="col-2"></div>
-                <div class="preview-card col-8">
-                    <div class="preview-card__wrp">
-                        <div class="preview-card__item swiper-slide">
-                            <div class="preview-card__content d-flex justify-content-center">
-                                <i class="bi bi-plus-circle me-2"></i>
-                                <div class="preview-card__text pb-3" data-langnum="12">더 많은 컨텐츠를 준비중입니다...</div>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
 
+                <div class="col-md-6">
+                    <iframe id="vs_iframe"
+                        src="https://www.viewstl.com/?embedded&url=https%3A%2F%2Ffiles.printables.com%2Fmedia%2Fprints%2F576750%2Fstls%2F4608401_74a5c0be-23a8-4060-919b-6372a8c2c95f%2Fangbuilgu.stl%3F_gl%3D1*p8rl5f*_ga*MjUyNzYxMDQ1LjE2OTQxOTI1NjM.*_ga_3HK7B7RT5V*MTY5NDE5MjU2My4xLjEuMTY5NDE5MzI2Ni4xNi4wLjA.&color=white&bgcolor=transparent&shading=flat&clean=no&noborder=yes&orientation=front"
+                        style="border:0;margin:0;width:100%;height:400px;"></iframe>
+                </div>
             </div>
         </div>
-        </main>
+    </main>
 
-        <!--
-            Copyright (c) 2023 by jro (https://codepen.io/obicej/pen/WgmqKg)
+    <!-- Footer-->
+    <footer id="footerbox" class="py-3">
+        <div class="container">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <p class="font-monospace" style="font-size: 0.8em; color: gray;">&lt;/ We make valuable
+                        softwares. &gt;</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    Copyright &copy; <cite title="Source Title">모던 고천문 </cite>팀 | 2023 학생 과학 전람회
+                </figcaption>
+            </figure>
+        </div>
+    </footer>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+    <!-- bootstrap v5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-        -->
-
-        <!-- Footer-->
-        <footer id="footerbox" class="py-3">
-            <div class="container">
-                <figure class="text-center">
-                    <blockquote class="blockquote">
-                        <p class="font-monospace" style="font-size: 0.8em; color: gray;">&lt;/ We make valuable
-                            softwares. &gt;</p>
-                    </blockquote>
-                    <figcaption class="blockquote-footer">
-                        Copyright &copy; <cite title="Source Title">모던 고천문 </cite>팀 | 2023 학생 과학 전람회
-                    </figcaption>
-                </figure>
-            </div>
-        </footer>
-
-        <!-- bootstrap v5 -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-
-        <script src="./js/extensions.js"></script>
+    <script src="./js/3dviewer.js"></script>
 </body>
 
 </html>

@@ -59,6 +59,10 @@ app.get('/extensions', (req, res) => {
     res.sendFile(__dirname + "/public/extensions.html");
 })
 
+app.get('/3dviewer', (req, res) => {
+    res.sendFile(__dirname + "/public/3dviewer.html");
+})
+
 app.get('/devinfo', (req, res) => {
     res.sendFile(__dirname + "/public/devinfoOnContest.html");
 })
