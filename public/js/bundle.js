@@ -40727,6 +40727,101 @@ exports.isNCNameChar = isNCNameChar;
 // browserify downloadmodelDev.js -o bundle.js
 // 제작된 해당 bundle.js 파일이 html 과 연결되어 실행될 파일이다.
 
+$.lang = {};
+
+$.lang.ko = {
+    1: "앙부일구",
+    2: "페이지",
+    3: "3D 모델 제작",
+    4: "학습하기",
+    5: "확장 기능",
+    6: "개발자",
+    7: "기타",
+    8: "3D 모델 다운로드",
+    9: "파일을 다운로드 받아 3D 프린터로 출력해보세요!",
+    10: `<i class="bi bi-download me-1"></i>다운로드`,
+    11: "자주 묻는 질문",
+    12: "프린터 최소 사양은 어떻게 되나요?",
+    13: `연구를 진행하며 <strong>Sindoh DP 202, DP 102, 2X</strong>급 사양의 프린터에서 정상적으로 인쇄가 가능함을 확인하였습니다.<br>
+    프린터 최소 사양의 결정 조건으로 <strong>노즐 두께</strong>가 가장 중요합니다. 절기선과 시간선 간격보다 노즐 두께가 더 크면 프린팅이 어려울 수 있습니다.
+    연구에 사용한 옵션은 DP 202 프린터로 직경 18cm 크기에 노즐 두께 0.2mm 입니다.`,
+    14: "어떤 크기로 출력해야 하나요?",
+    15: `노즐의 두께에 따라 다르나, 정상적인 실험을 위해서 지평환의 <strong>직경이 16cm 이상</strong>이 되도록 출력하는 것을 권장합니다.<br>
+    <small class="text-muted">(노즐 두께 0.2mm 기준입니다.)</small>`,
+    16: "출력한 후, 무엇을 확인해야 하나요?",
+    17: `출력한 후, 정상적인 출력이 완료되었는지 확인하기 위해 아래의 3개의 조건을 모두 충족하는지 확인해주세요.<br><br>
+    <strong>
+    1. 수평이 맞는 평평한 바닥에 앙부일구를 올려놓고, 지평환의 수평을 확인했을 때 수평이 맞아야 합니다.<br>
+    2. 절기선의 개수가 총 13개로 모두 명확하게 음각 출력이 되었어야 합니다.<br>
+    3. 영침의 끝으로 갈수록 휘지 않고 곧게 출력 되어야 합니다.<br><br>
+    </strong>
+    위의 3개의 조건을 만족하지 않는 경우에는 다시 출력하여 실험하는 것을 권장합니다. 그렇지 않을 경우 실험에 오차가 발생할 수 있습니다.`
+}
+
+$.lang.en = {
+    1: "Angbuilgu",
+    2: "Pages",
+    3: "Render 3D Model",
+    4: "Learn",
+    5: "Extensions",
+    6: "Developers",
+    7: "Others",
+    8: "Download 3D Model",
+    9: "Download the file and try printing it with a 3D printer!",
+    10: `<i class="bi bi-download me-1"></i>Download`,
+    11: "FAQ",
+    12: "What are the minimum specifications for the printer?",
+    13: `During the research, it was confirmed that printing can be done successfully with printers of specifications equivalent to <strong>Sindoh DP 202, DP 102, and 2X.</strong><br>
+    Among the determining factors for the minimum printer specifications, <strong>the nozzle thickness</strong> is the most crucial. If the nozzle thickness is greater than the gap between contour lines and time lines, printing can become challenging.
+    The option used in the research was a DP 202 printer with a nozzle thickness of 0.2mm on a 18cm diameter size.`,
+    14: "What size should it be printed at?",
+    15: `It is recommended to print with a <strong>diameter of 16cm or larger</strong> for proper experimentation, which may vary depending on the nozzle thickness.<br>
+    <small class="text-muted">(Based on a nozzle thickness of 0.2mm.)</small>`,
+    16: "After printing, what should you check?",
+    17: `After printing, please check if all three of the following conditions are met to ensure a successful print:<br><br>
+    <strong>
+    1. Place the Angbuilgu on a flat, level surface, and when checking the horizon's level, it should be perfectly horizontal.<br>
+    2. There should be a total of 13 equidistant solstice lines, clearly indicating negative angles.<br>
+    3. As you move towards the tip of the shadow, it should print straight without bending.<br><br>
+    </strong>
+    If any of the above three conditions are not met, it is recommended to reprint and retry the experiment. Otherwise, it may introduce errors into the experiment.`
+}
+
+
+$(document).ready(function () {
+    let lang = getLanguageCookie();
+    if (lang) {
+        setLanguage(lang);
+    } else {
+        setLanguageCookie('ko')
+        setLanguage('ko');
+    }
+});
+
+
+const setLanguage = (currentLanguage) => {
+    $('[data-langnum]').each(function () {
+        $(this).html($.lang[currentLanguage][$(this).data('langnum')]);
+    });
+}
+
+$('.lang-select').on('click', function () {
+    const changedLang = $(this).data('lang');
+    setLanguageCookie(changedLang);
+    setLanguage(changedLang);
+});
+
+const setLanguageCookie = (lang) => {
+    document.cookie = `lang=${lang}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+}
+
+const getLanguageCookie = () => {
+    let value = document.cookie.match('(^|;) ?' + 'lang' + '=([^;]*)(;|$)');
+    return value ? value[2] : null;
+}
+
+// jquery
+
 $('#ok-btn').click(() => {
     $('#ok-btn').attr('disabled', true);
     $(".loader-spinner").removeClass('visually-hidden');

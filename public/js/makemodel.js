@@ -1,14 +1,45 @@
+$.lang = {};
+
+$.lang.ko = {
+    1: "앙부일구",
+    2: "페이지",
+    3: "3D 모델 제작",
+    4: "학습하기",
+    5: "확장 기능",
+    6: "개발자",
+    7: "기타",
+}
+
+$.lang.en = {
+    1: "Angbuilgu",
+    2: "Pages",
+    3: "Render 3D Model",
+    4: "Learn",
+    5: "Extensions",
+    6: "Developers",
+    7: "Others",
+}
+
 let latitude, longitude, altitude, accuracy;
 let zoomLevel = 15;
 let coords, marker, position;
 let decl;
 let lang;
 
+
 // toast bootstrap element
 const toastLiveExample = document.getElementById('liveToast');
 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
 
 $(window).on('load', async () => {
+    let lang = getLanguageCookie();
+    if (lang) {
+        setLanguage(lang);
+    } else {
+        setLanguageCookie('ko')
+        setLanguage('ko');
+    }
+    
     $('#refresh-decl').hide();
     await fetchData().then(res => {
         decl = res.declination;
@@ -139,6 +170,9 @@ function laturl() {
 // language setting
 
 const setLanguage = (currentLanguage) => {
+    $('[data-langnum]').each(function () {
+        $(this).html($.lang[currentLanguage][$(this).data('langnum')]);
+    });
     if (currentLanguage === 'ko') {
         $('#latitudeTT').html("위도");
         $('#longitudeTT').html("경도");
@@ -168,7 +202,6 @@ const setLanguage = (currentLanguage) => {
 }
 
 $('.lang-select').on('click', function () {
-    console.log("ㄴㄴㄴㄴ");
     const changedLang = $(this).data('lang');
     setLanguageCookie(changedLang);
     setLanguage(changedLang);

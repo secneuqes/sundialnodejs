@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const { parseString } = require('xml2js');
 const path = require('path');
-// const fs = require('fs');
 var bodyParser = require('body-parser');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
@@ -22,7 +21,6 @@ app.use(
         threshold: 100 * 1000,
         filter: (req, res) => {
             if (req.headers["x-no-compression"]) {
-                // header에 x-no-compression이 있으면, 압축하지 않도록 false를 반환한다.
                 return false;
             }
             return compression.filter(req, res);
@@ -64,8 +62,6 @@ app.get('/extensions', (req, res) => {
 app.get('/devinfo', (req, res) => {
     res.sendFile(__dirname + "/public/devinfoOnContest.html");
 })
-
-// TODO: /learn/{title} 형식으로 get으로 페이지 띄우기
 
 app.get('/download/student/en', (req, res) => {
     let file = path.join(__dirname, "/public/assets/학습지/exploring_the_principles_of_angbuilgu_forStudents.pdf");

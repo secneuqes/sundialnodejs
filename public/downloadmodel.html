@@ -37,7 +37,7 @@
     <div class="header-bar"></div>
     <header class="navbar navbar-expand-md navbar-light doks-navbar">
         <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
-            <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;">앙부일구</a>
+            <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;" data-langnum="1">앙부일구</a>
             <button class="btn btn-menu d-block d-md-none order-5" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasDoks" aria-controls="offcanvasDoks" aria-label="Open main menu"><svg
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -52,22 +52,22 @@
                 <div class="header-bar d-md-none"></div>
                 <div class="offcanvas-header d-md-none">
                     <h2 class="h5 offcanvas-title ps-2" id="offcanvasDoksLabel">
-                        <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;">앙부일구</a>
+                        <a class="navbar-brand p-0 me-auto logo-text" href="./" style="font-size: 1.3em;" data-langnum="1">앙부일구</a>
                     </h2><button type="button" class="btn-close text-reset me-2" data-bs-dismiss="offcanvas"
                         aria-label="Close main menu"></button>
                 </div>
                 <div class="offcanvas-body px-4">
-                    <h3 class="h6 text-uppercase mb-3 d-md-none">페이지</h3>
+                    <h3 class="h6 text-uppercase mb-3 d-md-none" data-langnum="2">페이지</h3>
                     <ul class="nav flex-column flex-md-row ms-md-n3">
-                        <li class="nav-item"><a class="nav-link ps-0 py-1 fw-bolder" href="./makemodel">3D 모델 제작</a>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1 fw-bolder" href="./makemodel" data-langnum="3">3D 모델 제작</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./learn">학습하기</a>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./learn" data-langnum="4">학습하기</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./extensions">Extensions</a></li>
-                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./devinfo">개발자</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./extensions" data-langnum="5">확장 기능</a></li>
+                        <li class="nav-item"><a class="nav-link ps-0 py-1" href="./devinfo" data-langnum="6">개발자</a></li>
                     </ul>
                     <hr class="text-black-50 my-4 d-md-none">
-                    <h3 class="h6 text-uppercase mb-3 d-md-none">기타</h3>
+                    <h3 class="h6 text-uppercase mb-3 d-md-none" data-langnum="7">기타</h3>
                     <ul class="nav flex-column flex-md-row ms-md-auto">
                         <li class="nav-item">
                             <a class="nav-link ps-0 py-1" href="https://github.com/secneuqes/sundialnodejs">
@@ -96,7 +96,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="text-center">
-                        <p class="lead fs-6">* 아직 지원되지 않는 기능입니다.</p>
+                        <!-- <p class="lead fs-6">* 아직 지원되지 않는 기능입니다.</p> -->
                         <button type="button" class="btn btn-primary lang-select me-2" data-lang="ko"
                             data-bs-dismiss="modal">한국어 🇰🇷</button>
                         <button type="button" class="btn btn-primary lang-select" data-lang="en"
@@ -110,15 +110,15 @@
     <!-- main -->
     <main>
         <section id="intro"
-            class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center text-black fs-1">
+            class="vw-100 vh-100 d-flex flex-column justify-content-center align-items-center text-black fs-1">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6">
                         <div class="d-flex justify-content-center mb-1">
-                            <div id="" class="small fs-2 mb-1 fw-bold">3D 모델 다운로드</div>
+                            <div id="" class="small fs-2 mb-1 fw-bold" data-langnum="8">3D 모델 다운로드</div>
                         </div>
                         <div class="d-flex justify-content-center mb-4">
-                            <div class="small fs-6 mb-4 fw-light">파일을 다운로드 받아 3D 프린터로 출력해보세요!</div>
+                            <div class="small fs-6 mb-4 fw-light" data-langnum="9">파일을 다운로드 받아 3D 프린터로 출력해보세요!</div>
                         </div>
 
                         <div class="d-flex justify-content-center mb-3 loader loader-spinner visually-hidden">
@@ -149,26 +149,24 @@
                         </div>
                         <!-- downlaod btn -->
                         <div class="d-flex justify-content-center mt-5 mb-5 btn-group-b">
-                            <button id="ok-btn" class="btn btn-dark flex-shrink-0" type="button">
-                                <!-- onclick="downloadSTL()" -->
-                                <i class="bi bi-download"></i>
-                                다운로드
+                            <button id="ok-btn" class="btn btn-dark flex-shrink-0" type="button" data-langnum="10">
+                                <i class="bi bi-download me-1"></i>다운로드
                             </button>
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <div id="" class="small fs-3 mb-3 fw-bold">자주 묻는 질문</div>
+                        <div id="" class="small fs-3 mb-3 fw-bold" data-langnum="11">자주 묻는 질문</div>
                         <div class="accordion" id="accordionExample" style="width: 100%; font-size: 0.5em;">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" data-langnum="12">
                                         프린터 최소 사양은 어떻게 되나요?
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                     aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body fs-6">
+                                    <div class="accordion-body fs-6" data-langnum="13">
                                         연구를 진행하며 <strong>Sindoh DP 202, DP 102, 2X</strong>급 사양의 프린터에서 정상적으로 인쇄가 가능함을 확인하였습니다.<br>
                                         프린터 최소 사양의 결정 조건으로 <strong>노즐 두께</strong>가 가장 중요합니다. 절기선과 시간선 간격보다 노즐 두께가 더 크면 프린팅이 어려울 수 있습니다.
                                         연구에 사용한 옵션은 DP 202 프린터로 직경 18cm 크기에 노즐 두께 0.2mm 입니다.
@@ -179,13 +177,13 @@
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button collapsed fw-bold" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                        aria-controls="collapseTwo">
+                                        aria-controls="collapseTwo" data-langnum="14">
                                         어떤 크기로 출력해야 하나요?
                                     </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body fs-6">
+                                    <div class="accordion-body fs-6" data-langnum="15">
                                         노즐의 두께에 따라 다르나, 정상적인 실험을 위해서 지평환의 <strong>직경이 16cm 이상</strong>이 되도록 출력하는 것을 권장합니다.<br>
                                         <small class="text-muted">(노즐 두께 0.2mm 기준입니다.)</small>
                                     </div>
@@ -195,13 +193,13 @@
                                 <h2 class="accordion-header" id="headingThree">
                                     <button class="accordion-button collapsed fw-bold" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
+                                        aria-controls="collapseThree" data-langnum="16">
                                         출력한 후, 무엇을 확인해야 하나요?
                                     </button>
                                 </h2>
                                 <div id="collapseThree" class="accordion-collapse collapse"
                                     aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body fs-6">
+                                    <div class="accordion-body fs-6" data-langnum="17">
                                         출력한 후, 정상적인 출력이 완료되었는지 확인하기 위해 아래의 3개의 조건을 모두 충족하는지 확인해주세요.<br><br>
                                         <strong>
                                         1. 수평이 맞는 평평한 바닥에 앙부일구를 올려놓고, 지평환의 수평을 확인했을 때 수평이 맞아야 합니다.<br>
