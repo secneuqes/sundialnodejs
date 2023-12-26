@@ -64,7 +64,7 @@ app.get('/3dviewer', (req, res) => {
 })
 
 app.get('/devinfo', (req, res) => {
-    res.sendFile(__dirname + "/public/devinfoOnContest.html");
+    res.sendFile(__dirname + "/public/devinfo.html");
 })
 
 app.get('/download/student/en', (req, res) => {
